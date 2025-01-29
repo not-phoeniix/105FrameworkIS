@@ -1,2 +1,2 @@
-﻿using var game = new Testing.Game1();
+﻿var game = new Testing.MyGame();
 game.Run();

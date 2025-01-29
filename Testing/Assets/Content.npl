@@ -1,0 +1,12 @@
+{
+    "root": "../Assets",
+    "content": {
+        "Images": {
+            "path": "Images/*",
+            "recursive": "True",
+            "action": "build",
+            "importer": "TextureImporter",
+            "processor": "TextureProcessor"
+        }
+    }
+}
