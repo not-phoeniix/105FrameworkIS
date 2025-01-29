@@ -1,0 +1,5 @@
+bin/
+obj/
+*.mgcb
+.trash/
+.DS_Store
