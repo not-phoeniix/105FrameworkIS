@@ -3,3 +3,6 @@ obj/
 *.mgcb
 .trash/
 .DS_Store
+.vs/
+.vscode/
+.config/
