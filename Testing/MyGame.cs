@@ -6,20 +6,18 @@ namespace Testing;
 
 public class MyGame : Engine.Game
 {
-    private Texture2D texture;
-
     public void Init()
     {
-        texture = Content.Load<Texture2D>("Images/some_guy");
-        ClearColor = Color.Red;
+        SetResolution(500, 500);
     }
 
     public void Draw()
     {
-        SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        DrawColor = Color.Red;
+        DrawRectFilled(100, 100, 200, 200);
 
-        SpriteBatch.Draw(texture, new Rectangle(0, 0, 400, 400), Color.White);
-
-        SpriteBatch.End();
+        DrawColor = Color.Black;
+        StrokeWidth = 4;
+        DrawRectOutline(100, 100, 200, 200);
     }
 }

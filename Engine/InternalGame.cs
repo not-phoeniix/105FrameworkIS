@@ -11,10 +11,25 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     private readonly MethodInfo gameDrawMethod;
     private readonly Game game;
 
+    /// <summary>
+    /// Gets graphics device manager of this internal game
+    /// </summary>
     public GraphicsDeviceManager Graphics { get; private set; }
+
+    /// <summary>
+    /// Gets the spritebatch of this intenral game
+    /// </summary>
     public SpriteBatch SpriteBatch { get; private set; }
+
+    /// <summary>
+    /// Gets/sets the clear color (or background color) of the window
+    /// </summary>
     public Color ClearColor { get; set; }
 
+    /// <summary>
+    /// Creates a new internal game object
+    /// </summary>
+    /// <param name="game">Engine.Game to grab game methods from</param>
     public InternalGame(Game game)
     {
         Graphics = new GraphicsDeviceManager(this);
@@ -24,7 +39,7 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
         this.game = game;
         gameInitMethod = game.GetType().GetMethod("Init");
         gameDrawMethod = game.GetType().GetMethod("Draw");
-        ClearColor = Color.CornflowerBlue;
+        ClearColor = Color.White;
     }
 
     protected override void Initialize()
@@ -43,7 +58,9 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+        Input.Update();
+
+        if (Input.IsKeyDown(Keys.Escape))
         {
             Exit();
         }
@@ -55,7 +72,9 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDevice.Clear(ClearColor);
 
+        SpriteBatch.Begin();
         gameDrawMethod?.Invoke(game, null);
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
