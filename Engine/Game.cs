@@ -8,6 +8,7 @@ namespace Engine;
 public class Game
 {
     private readonly InternalGame game;
+    private readonly Scene scene;
 
     /// <summary>
     /// Gets/sets the clear color (or background color) of the window
@@ -33,7 +34,8 @@ public class Game
     /// </summary>
     public Game()
     {
-        game = new InternalGame(this);
+        scene = new Scene();
+        game = new InternalGame(this, scene);
     }
 
     /// <summary>
@@ -54,6 +56,15 @@ public class Game
         game.Graphics.PreferredBackBufferWidth = width;
         game.Graphics.PreferredBackBufferHeight = height;
         game.Graphics.ApplyChanges();
+    }
+
+    /// <summary>
+    /// Adds an entity to the game's current scene
+    /// </summary>
+    /// <param name="entity">Entity to add</param>
+    protected void AddToScene(Entity entity)
+    {
+        scene.AddEntity(entity);
     }
 
     #region // Draw Methods

@@ -10,6 +10,8 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     private readonly MethodInfo gameInitMethod;
     private readonly MethodInfo gameDrawMethod;
     private readonly Game game;
+    private readonly Scene scene;
+    private readonly FpsCounter fps;
 
     /// <summary>
     /// Gets graphics device manager of this internal game
@@ -30,13 +32,15 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     /// Creates a new internal game object
     /// </summary>
     /// <param name="game">Engine.Game to grab game methods from</param>
-    public InternalGame(Game game)
+    public InternalGame(Game game, Scene scene)
     {
         Graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Assets";
         IsMouseVisible = true;
 
         this.game = game;
+        this.scene = scene;
+        this.fps = new FpsCounter();
         gameInitMethod = game.GetType().GetMethod("Init");
         gameDrawMethod = game.GetType().GetMethod("Draw");
         ClearColor = Color.White;
@@ -58,12 +62,15 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
 
     protected override void Update(GameTime gameTime)
     {
+        fps.Update(gameTime);
         Input.Update();
 
         if (Input.IsKeyDown(Keys.Escape))
         {
             Exit();
         }
+
+        scene.Update(fps.DeltaTime);
 
         base.Update(gameTime);
     }
@@ -73,6 +80,7 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
         GraphicsDevice.Clear(ClearColor);
 
         SpriteBatch.Begin();
+        scene.Draw(SpriteBatch);
         gameDrawMethod?.Invoke(game, null);
         SpriteBatch.End();
 
