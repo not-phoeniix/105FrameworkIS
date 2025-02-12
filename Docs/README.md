@@ -51,3 +51,20 @@ First exercise, give a name to a box, it shows up in game, spawn a couple
 Second exercise, they make an array of names, and loop through the names and spawn boxes with each name showcasing loops and Arrays
 
 Something like this imo, still needs to be a little wrung in considering the topics themselves would be a little out of order in my examples.
+
+
+Toy Box
+// Everything is an entity, collision with each other and bounds of window
+- Ball
+- Box
+- Character
+    - Controllable with {WASD/Arrows}
+- Rope
+    - Can be attached to entities
+- Conveyor
+    - When in collision applies force
+- Force Field
+    - Rect region that applies force when inside of
+
+
+Engine/Toys/Entities
