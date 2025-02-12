@@ -8,6 +8,11 @@ namespace Testing;
 
 public class MyGame : Engine.Game
 {
+    int iterations = -125;
+    int count = 0;
+
+    int num = 2;
+
     public void Init()
     {
         SetResolution(500, 500);
@@ -23,12 +28,9 @@ public class MyGame : Engine.Game
         DrawRectOutline(100, 100, 200, 200);
 
         StrokeWidth = 2;
-
-        Color[] colors = { Color.DarkRed, Color.Red, Color.Orange, Color.Yellow, Color.LimeGreen, Color.Blue, Color.Purple };
-
         int hue = 0;
 
-        for (int i = -125; i < 64; i++)
+        for (int i = -125; i < iterations; i++)
         {
             int offset = 2 * i;
 
@@ -44,5 +46,10 @@ public class MyGame : Engine.Game
             new Vector2(125, 500 - 125 - offset),
             new Vector2(offset, 500 - offset * 2));
         }
+
+            iterations += num;
+
+        if (iterations > 63 || iterations < -124)
+            num = -num;
     }
 }
