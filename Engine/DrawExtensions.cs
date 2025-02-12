@@ -343,9 +343,33 @@ public static class DrawExtensions {
         float thickness,
         Color color
     ) {
-        DrawLineCentered(sb, point1, point2, thickness, color);
-        DrawLineCentered(sb, point2, point3, thickness, color);
-        DrawLineCentered(sb, point3, point1, thickness, color);
+        //DrawLineCentered(sb, point1, point2, thickness, color);
+        //DrawLineCentered(sb, point2, point3, thickness, color);
+        //DrawLineCentered(sb, point3, point1, thickness, color);
+
+        // This should be expandable, and *should* work
+        DrawShapeOutline(sb, thickness, color, point1, point2, point3);
+    }
+
+    #endregion
+
+    #region // Shape Drawing
+
+    /// <summary>
+    /// Draws a shape to the screen
+    /// </summary>
+    /// <param name="sb">SpriteBatch to draw with</param>
+    /// <param name="thickness">Thickness of circle outline line</param>
+    /// <param name="color">Color of triangle</param>
+    /// /// <param name="points">Array of points</param>
+    public static void DrawShapeOutline(
+        this SpriteBatch sb,
+        float thickness,
+        Color color,
+        params Vector2[] points
+    ) {
+        for (int i = 0; i < points.Length; i++)
+            DrawLineCentered(sb, points[i], points[(i + 1) % points.Length], thickness, color);
     }
 
     #endregion

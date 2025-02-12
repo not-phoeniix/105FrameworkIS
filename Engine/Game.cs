@@ -89,5 +89,60 @@ public class Game
         );
     }
 
+    /// <summary>
+    /// Draws a shape outline on the window
+    /// </summary>
+    /// <param name="points">List of points to be drawn in order</param>
+    protected void DrawShapeOutline(params Vector2[] points)
+    {
+        game.SpriteBatch.DrawShapeOutline(
+            StrokeWidth,
+            DrawColor,
+            points
+            );
+    }
+
+    protected Color GetRandomColor()
+    {
+        Random random = new Random();
+        return GetRGB(random.Next(0, 360), (float)random.NextDouble(), (float)random.NextDouble());
+    }
+
+    protected Color GetRGB(int H, double S, double V)
+    {
+        double dC = (V * S);
+        double Hd = ((double)H) / 60;
+        double dX = (dC * (1 - Math.Abs((Hd % 2) - 1)));
+
+        int C = (int)(dC * 255);
+        int X = (int)(dX * 255);
+
+        if (Hd < 1)
+        {
+            return new Color(C, X, 0);
+        }
+        else if (Hd < 2)
+        {
+            return new Color(X, C, 0);
+        }
+        else if (Hd < 3)
+        {
+            return new Color(0, C, X);
+        }
+        else if (Hd < 4)
+        {
+            return new Color(0, X, C);
+        }
+        else if (Hd < 5)
+        {
+            return new Color(X, 0, C);
+        }
+        else if (Hd < 6)
+        {
+            return new Color(C, 0, X);
+        }
+        return new Color(0, 0, 0);
+    }
+
     #endregion
 }
