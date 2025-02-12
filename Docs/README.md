@@ -40,3 +40,14 @@ A docs directory for general notes, brainstorm, and other non-code ideas/files w
         > Scope
     
 ##### Ideas
+
+We could create a series of psuedo-code docs like you would normally get in 105/106 that guides the student
+to get a specific outcome in the exercises that is screenshotted to be submitted. For example, *if* it was 
+a factory setting, and you load into it without typing any of your own code, you'd be able to interact normally (whatever that is)
+and in the code if you were to spawn 3 boxes, just making them make a function that uses our own SpawnBox() to 
+loop through would be a good example
+
+First exercise, give a name to a box, it shows up in game, spawn a couple
+Second exercise, they make an array of names, and loop through the names and spawn boxes with each name showcasing loops and Arrays
+
+Something like this imo, still needs to be a little wrung in considering the topics themselves would be a little out of order in my examples.
