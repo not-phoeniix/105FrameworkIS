@@ -48,8 +48,8 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-
+        Graphics.PreferredBackBufferWidth = 800;
+        Graphics.PreferredBackBufferHeight = 600;
         base.Initialize();
     }
 

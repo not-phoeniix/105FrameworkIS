@@ -77,8 +77,9 @@ public static class Input
         }
         else if (
             padState.Buttons != padStatePrev.Buttons ||
-            padState.ThumbSticks != padStatePrev.ThumbSticks
-        )
+            padState.ThumbSticks != padStatePrev.ThumbSticks ||
+            padState.DPad != padStatePrev.DPad ||
+            padState.Triggers != padStatePrev.Triggers)
         {
             Mode = InputMode.Gamepad;
         }

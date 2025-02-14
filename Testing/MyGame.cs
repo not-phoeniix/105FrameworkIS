@@ -1,31 +1,29 @@
 using Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Runtime.InteropServices;
-using System.Threading;
 
 namespace Testing;
 
 public class MyGame : Engine.Game
 {
-    int iterations = -125;
-    int count = 0;
+    // int iterations = -125;
+    // int count = 0;
 
-    int num = 2;
+    // int num = 2;
 
     public void Init()
     {
         SetResolution(500, 500);
-
-        TestEntity testy = new(
-            new Vector2(100, 100),
-            Color.Red
-        );
-        AddToScene(testy);
     }
 
     public void Draw()
     {
+        // spawn boxes in with left click
+        if (Input.IsLeftMouseDownOnce())
+        {
+            AddToScene(new TestEntity(Input.MousePos, Color.Red));
+        }
+
         // DrawColor = Color.Red;
         // DrawRectFilled(100, 100, 200, 200);
 

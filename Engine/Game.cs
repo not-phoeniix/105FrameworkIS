@@ -34,7 +34,8 @@ public class Game
     /// </summary>
     public Game()
     {
-        scene = new Scene();
+        // resolution is 800x600 by default in InternalGame
+        scene = new Scene(new Rectangle(0, 0, 800, 600));
         game = new InternalGame(this, scene);
     }
 
@@ -56,15 +57,16 @@ public class Game
         game.Graphics.PreferredBackBufferWidth = width;
         game.Graphics.PreferredBackBufferHeight = height;
         game.Graphics.ApplyChanges();
+        scene.Resize(new Rectangle(0, 0, width, height));
     }
 
     /// <summary>
-    /// Adds an entity to the game's current scene
+    /// Adds an object to the game's current scene
     /// </summary>
-    /// <param name="entity">Entity to add</param>
-    protected void AddToScene(Entity entity)
+    /// <param name="obj">Object to add</param>
+    protected void AddToScene(ITransform obj)
     {
-        scene.AddEntity(entity);
+        scene.Add(obj);
     }
 
     #region // Draw Methods
@@ -110,7 +112,7 @@ public class Game
             StrokeWidth,
             DrawColor,
             points
-            );
+        );
     }
 
     protected Color GetRandomColor()
