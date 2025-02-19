@@ -9,7 +9,9 @@ namespace Engine;
 /// </summary>
 public abstract class Entity : ICollidable, IDrawable, ITransform, IUpdateable
 {
-    protected readonly PhysicsComponent physics;
+    private readonly PhysicsComponent physics;
+
+    protected PhysicsComponent Physics => physics;
 
     /// <summary>
     /// Gets/sets the position of this entity

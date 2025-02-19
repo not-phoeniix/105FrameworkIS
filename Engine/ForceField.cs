@@ -13,8 +13,8 @@ public class ForceField : Entity
 		: base(position, new Rectangle(0,0,10,10), mass * 100, 0)
 	{
         this.radius = radius;
-		base.physics.EnableGravity = false;
-        base.physics.EnableCollisions = false;
+		base.Physics.EnableGravity = false;
+        base.Physics.EnableCollisions = false;
 	}
 
     public override void Update(float deltaTime)
@@ -32,7 +32,7 @@ public class ForceField : Entity
 
             dis = MathF.Sqrt(dis);
 
-            Vector2 force = Vector2.Normalize(Position - c.Position) * physics.Mass * MathF.Sqrt(1 / dis);
+            Vector2 force = Vector2.Normalize(Position - c.Position) * Physics.Mass * MathF.Sqrt(1 / dis);
 
             (c as Entity).ApplyForce(force);
 		}
