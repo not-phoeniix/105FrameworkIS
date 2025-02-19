@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Engine;
+namespace Engine.Toys;
 
 /// <summary>
 /// Testing entity class, used to test functionality for entity inheritance system

@@ -1,9 +1,8 @@
 ﻿using Engine.Physics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Markup;
 
-namespace Engine;
+namespace Engine.Toys;
 
 public class ForceField : Entity
 {

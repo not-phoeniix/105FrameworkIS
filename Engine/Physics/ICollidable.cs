@@ -16,4 +16,9 @@ public interface ICollidable : ITransform
     /// Gets the bounds of this collidable object
     /// </summary>
     public Rectangle Bounds { get; }
+
+    /// <summary>
+    /// Gets/sets whether or not this object can collide/be collided with
+    /// </summary>
+    public bool EnableCollisions { get; set; }
 }

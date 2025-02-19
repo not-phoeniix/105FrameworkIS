@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Engine.Physics;
 
-namespace Engine;
+namespace Engine.Toys;
 
 /// <summary>
 /// A simple collider class that represents an unmovable 
@@ -19,6 +19,11 @@ public class StaticCollider : ICollidable, IDrawable, ITransform
     /// Gets/sets the scene this static collider exists in
     /// </summary>
     public Scene Scene { get; set; }
+
+    /// <summary>
+    /// Gets/sets whether or not this collider's collisions are enabled
+    /// </summary>
+    public bool EnableCollisions { get; set; }
 
     /// <summary>
     /// Gets/sets the center-anchored position in this static collider

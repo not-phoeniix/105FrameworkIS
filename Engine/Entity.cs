@@ -11,7 +11,19 @@ public abstract class Entity : ICollidable, IDrawable, ITransform, IUpdateable
 {
     private readonly PhysicsComponent physics;
 
+    /// <summary>
+    /// Gets the physics component of this entity
+    /// </summary>
     protected PhysicsComponent Physics => physics;
+
+    /// <summary>
+    /// Gets/sets whether or not collisions are enabled for this entity
+    /// </summary>
+    public bool EnableCollisions
+    {
+        get => physics.EnableCollisions;
+        set => physics.EnableCollisions = value;
+    }
 
     /// <summary>
     /// Gets/sets the position of this entity

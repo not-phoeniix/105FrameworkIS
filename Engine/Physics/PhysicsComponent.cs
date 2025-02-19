@@ -1,3 +1,7 @@
+//
+// PhysicsComponent written by Nikki Murello
+//
+
 using System;
 using Microsoft.Xna.Framework;
 
@@ -453,6 +457,9 @@ public class PhysicsComponent
             {
                 // do not resolve collisions with self
                 if (obj == attachedTo) continue;
+
+                // do not resolve collisions with objects with disabled collisions
+                if (!obj.EnableCollisions) continue;
 
                 if (ResolveCollision(obj.Bounds) == true)
                 {
