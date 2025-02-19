@@ -6,7 +6,7 @@ namespace Engine.Physics;
 /// <summary>
 /// The types of physics solvers used in position calculation
 /// </summary>
-internal enum PhysicsSolver
+public enum PhysicsSolver
 {
     Euler,
     Verlet
@@ -16,7 +16,7 @@ internal enum PhysicsSolver
 /// Component that represents a "physics object," does collision
 /// detection/resolution and gravity, as well as force-based movement.
 /// </summary>
-internal class PhysicsComponent
+public class PhysicsComponent
 {
     #region // Fields & Properties
 
