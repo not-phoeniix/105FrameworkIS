@@ -23,7 +23,7 @@ public class StaticCollider : ICollidable, IDrawable, ITransform
     /// <summary>
     /// Gets/sets whether or not this collider's collisions are enabled
     /// </summary>
-    public bool EnableCollisions { get; set; }
+    public bool EnableCollisions { get; set; } = true;
 
     /// <summary>
     /// Gets/sets the center-anchored position in this static collider
