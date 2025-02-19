@@ -9,7 +9,7 @@ namespace Engine;
 /// </summary>
 public abstract class Entity : ICollidable, IDrawable, ITransform, IUpdateable
 {
-    private readonly PhysicsComponent physics;
+    protected readonly PhysicsComponent physics;
 
     /// <summary>
     /// Gets/sets the position of this entity
@@ -51,6 +51,11 @@ public abstract class Entity : ICollidable, IDrawable, ITransform, IUpdateable
             maxSpeed,
             this
         );
+    }
+
+    public virtual void ApplyForce(Vector2 force)
+    {
+        physics.ApplyForce(force);
     }
 
     /// <summary>

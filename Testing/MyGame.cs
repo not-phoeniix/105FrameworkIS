@@ -9,10 +9,14 @@ public class MyGame : Engine.Game
     public void Init()
     {
         SetResolution(500, 500);
+
+        AddToScene(new ForceField(Vector2.One * 200, 200, 100));
     }
 
     public void Draw()
     {
+        
+
         // spawn boxes in with left click
         if (Input.IsLeftMouseDownOnce())
         {
