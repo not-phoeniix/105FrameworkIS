@@ -16,8 +16,6 @@ public class MyGame : Engine.Game
 
     public void Draw()
     {
-        
-
         // spawn boxes in with left click
         if (Input.IsLeftMouseDownOnce())
         {

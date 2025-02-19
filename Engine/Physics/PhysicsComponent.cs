@@ -461,7 +461,7 @@ public class PhysicsComponent
                 // do not resolve collisions with objects with disabled collisions
                 if (!obj.EnableCollisions) continue;
 
-                if (ResolveCollision(obj.Bounds) == true)
+                if (ResolveCollision(obj) == true)
                 {
                     anythingColliding = true;
                 }
@@ -484,39 +484,50 @@ public class PhysicsComponent
     }
 
     // returns whether or not a collision exists
-    private bool ResolveCollision(Rectangle target)
+    private bool ResolveCollision(ICollidable target)
     {
         bool collisionExists = false;
 
+        Rectangle objBounds = target.Bounds;
+
         // detect by expanding bottom bounds by 1 pixel
         //   when object is colliding with ground
-        bool isBelow = Utils.IsBelow(target, VerticalBounds);
-        bool verticalCollision = target.Top <= VerticalBounds.Bottom + 1;
+        bool isBelow = Utils.IsBelow(objBounds, VerticalBounds);
+        bool verticalCollision = objBounds.Top <= VerticalBounds.Bottom + 1;
         if (isBelow && verticalCollision)
         {
             OnGround = true;
         }
 
         // vertical collision resolution
-        if (target.Intersects(VerticalBounds))
+        if (objBounds.Intersects(VerticalBounds))
         {
             collisionExists = true;
 
             int displacement;
-            bool tileBelow = target.Top >= VerticalBounds.Top;
+            bool tileBelow = objBounds.Top >= VerticalBounds.Top;
 
             if (tileBelow)
             {
                 // for when object/entity is above the object
-                displacement = VerticalBounds.Bottom - target.Top;
+                displacement = VerticalBounds.Bottom - objBounds.Top;
             }
             else
             {
                 // for when object/entity is below the object
-                displacement = VerticalBounds.Top - target.Bottom;
+                displacement = VerticalBounds.Top - objBounds.Bottom;
             }
 
             position.Y -= displacement;
+
+            // ===================================
+            //
+            // THIS MIGHT MAKE THINGS JANK!
+            //
+            if (target is Entity e)
+                e.ApplyForce(velocity);
+            // ===================================
+
             velocity.Y = 0;
             toChangeVelocity = true;
 
@@ -524,25 +535,29 @@ public class PhysicsComponent
         }
 
         // horizontal collision resolution
-        if (target.Intersects(HorizontalBounds))
+        if (objBounds.Intersects(HorizontalBounds))
         {
             collisionExists = true;
 
             int displacement;
-            bool tileToRight = target.Left >= HorizontalBounds.Left;
+            bool tileToRight = objBounds.Left >= HorizontalBounds.Left;
 
             if (tileToRight)
             {
                 // for when object/entity is to the left of the object
-                displacement = HorizontalBounds.Right - target.Left;
+                displacement = HorizontalBounds.Right - objBounds.Left;
             }
             else
             {
                 // for when object/entity is to the right of the object
-                displacement = HorizontalBounds.Left - target.Right;
+                displacement = HorizontalBounds.Left - objBounds.Right;
             }
 
             position.X -= displacement;
+
+            if (target is Entity e)
+                e.ApplyForce(velocity);
+
             velocity.X = 0;
             toChangeVelocity = true;
 
