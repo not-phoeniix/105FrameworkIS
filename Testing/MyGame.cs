@@ -11,7 +11,7 @@ public class MyGame : Engine.Game
     {
         SetResolution(500, 500);
 
-        AddToScene(new ForceField(Vector2.One * 200, 200, 100));
+        AddToScene(new ForceField(Vector2.One * 200, 200, 200));
     }
 
     public void Draw()
