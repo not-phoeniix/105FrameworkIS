@@ -65,4 +65,12 @@ public class StaticCollider : ICollidable, IDrawable, ITransform
     {
         sb.DrawRectFill(Bounds, Color);
     }
+
+    public void DrawBackground(SpriteBatch sb)
+    {
+    }
+
+    public void DrawForeground(SpriteBatch sb)
+    {
+    }
 }

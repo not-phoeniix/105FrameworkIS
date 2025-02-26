@@ -46,12 +46,20 @@ public class ForceField : Entity
     }
 
     /// <summary>
+    /// Draw this force field's outline to the background
+    /// </summary>
+    /// <param name="sb"></param>
+    public override void DrawBackground(SpriteBatch sb)
+    {
+        DrawExtensions.DrawCircleOutline(sb, Position, radius, 20, 10, Color.MediumPurple * .1f);
+    }
+
+    /// <summary>
     /// Draws this force field to the screen
     /// </summary>
     /// <param name="sb"></param>
     public override void Draw(SpriteBatch sb)
     {
-        DrawExtensions.DrawCircleOutline(sb, Position, radius, 20, 10, Color.MediumPurple * .1f);
         DrawExtensions.DrawCircleFill(sb, Position, 10, 10, Color.MediumPurple);
     }
 }

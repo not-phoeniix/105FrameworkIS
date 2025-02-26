@@ -86,4 +86,12 @@ public abstract class Entity : ICollidable, IDrawable, ITransform, IUpdateable
     /// </summary>
     /// <param name="sb">SpriteBatch to draw with</param>
     public virtual void Draw(SpriteBatch sb) { }
+
+    public virtual void DrawBackground(SpriteBatch sb)
+    {
+    }
+
+    public virtual void DrawForeground(SpriteBatch sb)
+    {
+    }
 }

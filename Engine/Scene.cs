@@ -68,7 +68,23 @@ public class Scene
         {
             if (objects[i] is IDrawable drawable)
             {
+                drawable.DrawBackground(sb);
+            }
+        }
+
+        for (int i = objects.Count - 1; i >= 0; i--)
+        {
+            if (objects[i] is IDrawable drawable)
+            {
                 drawable.Draw(sb);
+            }
+        }
+
+        for (int i = objects.Count - 1; i >= 0; i--)
+        {
+            if (objects[i] is IDrawable drawable)
+            {
+                drawable.DrawForeground(sb);
             }
         }
     }
