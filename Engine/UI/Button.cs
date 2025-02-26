@@ -93,7 +93,7 @@ public class Button : IUIElement
     {
         hovered = Bounds.Contains(Input.MousePos);
         pressedPrev = pressed;
-        pressed = Input.IsLeftMouseDown();
+        pressed = Input.IsLeftMouseDown() && hovered;
 
         if (!pressed && pressedPrev)
         {

@@ -10,6 +10,8 @@ internal class TerminalWindow
 {
     private readonly SpriteFont font;
     private readonly StringWriter writer;
+    private readonly Button visibleButton;
+    private bool visible;
 
     /// <summary>
     /// Gets/sets the bounds of this TerminalWindow
@@ -30,6 +32,9 @@ internal class TerminalWindow
         Console.SetOut(writer);
         Console.BackgroundColor = ConsoleColor.Black;
         Console.ForegroundColor = ConsoleColor.White;
+
+        visibleButton = new Button(GetButtonBounds(120, 30), "Toggle terminal", monoFont);
+        visibleButton.OnClick += () => visible = !visible;
     }
 
     /// <summary>
@@ -38,7 +43,8 @@ internal class TerminalWindow
     /// <param name="dt">Time passed since last frame</param>
     public void Update(float dt)
     {
-
+        visibleButton.Bounds = GetButtonBounds(120, 30);
+        visibleButton.Update(dt);
     }
 
     /// <summary>
@@ -47,15 +53,20 @@ internal class TerminalWindow
     /// <param name="sb">SpriteBatch to draw with</param>
     public void Draw(SpriteBatch sb)
     {
-        sb.DrawRectFill(Bounds, ConsoleToMgColor(Console.BackgroundColor));
-        sb.DrawString(
-            font,
-            writer.GetStringBuilder().ToString(),
-            Bounds.Location.ToVector2(),
-            ConsoleToMgColor(Console.ForegroundColor));
+        if (visible)
+        {
+            sb.DrawRectFill(Bounds, ConsoleToMgColor(Console.BackgroundColor));
+            sb.DrawString(
+                font,
+                writer.GetStringBuilder().ToString(),
+                Bounds.Location.ToVector2(),
+                ConsoleToMgColor(Console.ForegroundColor));
+        }
+
+        visibleButton.Draw(sb);
     }
 
-    static Color ConsoleToMgColor(ConsoleColor color)
+    private static Color ConsoleToMgColor(ConsoleColor color)
     {
         return color switch
         {
@@ -77,5 +88,14 @@ internal class TerminalWindow
             ConsoleColor.White => Color.White,
             _ => throw new Exception("Color not recognized!")
         };
+    }
+
+    private Rectangle GetButtonBounds(int width, int height)
+    {
+        return new Rectangle(
+            0,
+            visible ? Bounds.Top - height : Bounds.Bottom - height,
+            width,
+            height);
     }
 }
