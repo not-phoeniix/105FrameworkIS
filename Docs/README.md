@@ -56,15 +56,18 @@ Something like this imo, still needs to be a little wrung in considering the top
 Toy Box
 // Everything is an entity, collision with each other and bounds of window
 - Ball
-- Box
-- Character
+- [X] Box 
+- [ ] Character
     - Controllable with {WASD/Arrows}
-- Rope
+- [ ] Rope
     - Can be attached to entities
-- Conveyor
+- [X] Conveyor 
     - When in collision applies force
-- Force Field
+- [X] Force Field
     - Rect region that applies force when inside of
-
+- [ ] Fan
+    - Box that blows/sucks things in the direction facing
+- [ ] Physics UI Element
+    - UI that interacts with other physics components, ie, dragging with verlet
 
 Engine/Toys/Entities

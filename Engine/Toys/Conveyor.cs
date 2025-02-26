@@ -58,6 +58,7 @@ namespace Engine.Toys
         public override void DrawBackground(SpriteBatch sb)
         {
             DrawExtensions.DrawRectFill(sb, field, Color.Green * .15f);
+            DrawExtensions.DrawRectOutline(sb, field, 3, Color.Green * .15f);
         }
 
         /// <summary>

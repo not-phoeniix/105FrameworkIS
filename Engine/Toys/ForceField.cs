@@ -52,6 +52,8 @@ public class ForceField : Entity
     public override void DrawBackground(SpriteBatch sb)
     {
         DrawExtensions.DrawCircleOutline(sb, Position, radius, 20, 10, Color.MediumPurple * .1f);
+        DrawExtensions.DrawCircleOutline(sb, Position, radius, 20, 5, Color.MediumPurple * .25f);
+        DrawExtensions.DrawCircleOutline(sb, Position, radius, 20, 2, Color.Purple * .3f);
     }
 
     /// <summary>
@@ -61,5 +63,6 @@ public class ForceField : Entity
     public override void Draw(SpriteBatch sb)
     {
         DrawExtensions.DrawCircleFill(sb, Position, 10, 10, Color.MediumPurple);
+        DrawExtensions.DrawCircleOutline(sb, Position, 10, 10, 2, Color.Purple);
     }
 }
