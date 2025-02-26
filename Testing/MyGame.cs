@@ -1,7 +1,7 @@
 using Engine;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Engine.Toys;
+using System;
 
 namespace Testing;
 
@@ -20,6 +20,7 @@ public class MyGame : Engine.Game
         if (Input.IsLeftMouseDownOnce())
         {
             AddToScene(new TestEntity(Input.MousePos, Color.Red));
+            Console.WriteLine("test...?");
         }
     }
 }

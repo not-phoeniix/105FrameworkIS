@@ -1,4 +1,5 @@
 using System.Reflection;
+using Engine.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,7 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     private readonly Game game;
     private readonly Scene scene;
     private readonly FpsCounter fps;
+    private TerminalWindow terminal;
 
     /// <summary>
     /// Gets graphics device manager of this internal game
@@ -57,6 +59,9 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     {
         SpriteBatch = new SpriteBatch(GraphicsDevice);
 
+        SpriteFont terminalFont = Content.Load<SpriteFont>("Fonts/TerminalFont");
+        terminal = new TerminalWindow(GetTerminalSize(200), terminalFont);
+
         gameInitMethod?.Invoke(game, null);
     }
 
@@ -70,6 +75,8 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
             Exit();
         }
 
+        terminal.Bounds = GetTerminalSize(200);
+        terminal.Update(fps.DeltaTime);
         scene.Update(fps.DeltaTime);
 
         base.Update(gameTime);
@@ -82,8 +89,18 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
         SpriteBatch.Begin();
         scene.Draw(SpriteBatch);
         gameDrawMethod?.Invoke(game, null);
+        terminal.Draw(SpriteBatch);
         SpriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private Rectangle GetTerminalSize(int height)
+    {
+        return new Rectangle(
+            0,
+            Window.ClientBounds.Height - height,
+            Window.ClientBounds.Width,
+            height);
     }
 }

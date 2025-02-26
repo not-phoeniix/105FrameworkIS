@@ -7,6 +7,17 @@
             "action": "build",
             "importer": "TextureImporter",
             "processor": "TextureProcessor"
+        },
+        "Fonts": {
+            "path": "Fonts/*",
+            "recursive": "True",
+            "action": "build",
+            "importer": "FontDescriptionImporter",
+            "processor": "FontDescriptionProcessor",
+            "processorParam": {
+                "TextureFormat": "Compressed",
+                "PremultiplyAlpha": "True"
+            }
         }
     }
 }
