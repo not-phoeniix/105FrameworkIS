@@ -11,8 +11,10 @@ public class MyGame : Engine.Game
     {
         SetResolution(500, 500);
 
-        AddToScene(new Conveyor(Vector2.One * 200, 200, 20, ConveyorDirection.Left));
-        AddToScene(new ForceField(Vector2.One * 100, 200, 200));
+        AddToScene(new Fan(new Vector2(250,250), 100, FanDirection.Up, FanBlower.In));
+
+        //AddToScene(new Conveyor(Vector2.One * 200, 200, 20, ConveyorDirection.Left));
+        //AddToScene(new ForceField(Vector2.One * 100, 200, 200));
     }
 
     public void Draw()

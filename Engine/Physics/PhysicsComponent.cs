@@ -567,5 +567,31 @@ public class PhysicsComponent
         return collisionExists;
     }
 
+    /// <summary>
+    /// Rotate the bounds of the physics component
+    /// </summary>
+    /// <param name="angleInRadians">A rotation that will only support 0,90,180,270 degrees (in radians)</param>
+    public void RotateBounds(float angleInRadians)
+    {
+        // Horizontal
+        {
+            Vector2 position = new Vector2(HorizontalCollisionBox.X, HorizontalCollisionBox.Y);
+            Vector2 bounds = new Vector2(HorizontalCollisionBox.Width, HorizontalCollisionBox.Height);
+
+            position = Vector2.Rotate(position, angleInRadians);
+
+            HorizontalCollisionBox = new Rectangle((int)position.X, (int)position.Y, (int)bounds.X, (int)bounds.Y);
+        }
+        // Vertical
+        {
+            Vector2 position = new Vector2(VerticalCollisionBox.X, VerticalCollisionBox.Y);
+            Vector2 bounds = new Vector2(VerticalCollisionBox.Width, VerticalCollisionBox.Height);
+
+            position = Vector2.Rotate(position, angleInRadians);
+
+            VerticalCollisionBox = new Rectangle((int)position.X, (int)position.Y, (int)bounds.X, (int)bounds.Y);
+        }
+    }
+
     #endregion
 }

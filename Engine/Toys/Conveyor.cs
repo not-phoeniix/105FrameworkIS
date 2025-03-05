@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Engine.Toys
 {
-    public enum ConveyorDirection
-    {
-        Left,
-        Right
-    }
+    /// <summary>
+    /// Direction of the conveyor
+    /// </summary>
+    public enum ConveyorDirection { Left, Right }
 
     /// <summary>
     /// Moves entities in collision to either left or right directions 

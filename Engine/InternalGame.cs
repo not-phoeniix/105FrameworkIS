@@ -86,7 +86,7 @@ internal class InternalGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDevice.Clear(ClearColor);
 
-        SpriteBatch.Begin();
+        SpriteBatch.Begin(/*SpriteSortMode.FrontToBack*/);
         scene.Draw(SpriteBatch);
         gameDrawMethod?.Invoke(game, null);
         terminal.Draw(SpriteBatch);
