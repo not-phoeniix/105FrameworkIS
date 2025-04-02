@@ -7,14 +7,24 @@ namespace Testing;
 
 public class MyGame : Engine.Game
 {
+    private Rope rope;
+
     public void Init()
     {
         SetResolution(500, 500);
 
-        AddToScene(new Character(new Vector2(250,250), new Rectangle(0,0,50,50), 5, 5, 1000, 35));
+        AddToScene(new Character(new Vector2(250, 250), new Rectangle(0, 0, 50, 50), 5, 5, 1000, 35));
 
-        //AddToScene(new Conveyor(Vector2.One * 200, 200, 20, ConveyorDirection.Left));
-        //AddToScene(new ForceField(Vector2.One * 100, 200, 200));
+        rope = new(
+            new Vector2(250, 20),
+            new Vector2(400, 20),
+            20)
+        {
+            DrawColor = Color.Black,
+            DrawThickness = 5
+        };
+
+        AddToScene(rope);
     }
 
     public void Draw()
@@ -24,6 +34,11 @@ public class MyGame : Engine.Game
         {
             AddToScene(new TestEntity(Input.MousePos, Color.Red));
             Console.WriteLine("test...?");
+        }
+
+        if (Input.IsRightMouseDown())
+        {
+            rope.Position = Input.MousePos;
         }
     }
 }
