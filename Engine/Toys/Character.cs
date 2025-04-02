@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Engine.Physics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,6 +14,7 @@ namespace Engine.Toys
     {
         private float jumpForce;
         private float playerSpeed;
+
         /// <summary>
         /// Simple character controller
         /// </summary>
@@ -50,5 +52,7 @@ namespace Engine.Toys
             sb.DrawRectFill(Bounds, Color.Blue);
             sb.DrawRectOutline(Bounds, 5, Color.DarkBlue);
         }
+
+        public void AttachRope(Rope rope) => rope.AttachEnd(Physics);
     }
 }

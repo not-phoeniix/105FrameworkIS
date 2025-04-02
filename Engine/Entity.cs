@@ -14,7 +14,7 @@ public abstract class Entity : ICollidable, IDrawable, ITransform, IUpdateable
     /// <summary>
     /// Gets the physics component of this entity
     /// </summary>
-    protected PhysicsComponent Physics => physics;
+    protected virtual PhysicsComponent Physics => physics;
 
     /// <summary>
     /// Gets/sets whether or not collisions are enabled for this entity
