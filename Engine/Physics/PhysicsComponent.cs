@@ -3,6 +3,7 @@
 //
 
 using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 
 namespace Engine.Physics;
@@ -497,6 +498,34 @@ public class PhysicsComponent
         if (isBelow && verticalCollision)
         {
             OnGround = true;
+        }
+
+        if (objBounds.Intersects(new Rectangle(Bounds.Left + (int)Velocity.X, Bounds.Top + (int)Velocity.Y, Bounds.Width, Bounds.Height)))
+            Console.WriteLine("Collided {0}", new Random().Next());
+
+        /*
+         if (bb.CheckCollision(GetFutureRect(true, true, 1))) {
+
+			// Adjust position based on intersection
+			if (velocity.x > 0) {
+				position.x -= intersection.width;
+			}
+			else if (velocity.x < 0) {
+				position.x += intersection.width;
+			}
+
+			// Stop horizontal movement
+			velocity.x = 0;
+		}
+         */
+
+        Rectangle futureBounds = Bounds;
+        futureBounds.X += (int)Velocity.X;
+        futureBounds.Y += (int)Velocity.Y;
+
+        if (objBounds.Intersects(Bounds))
+        {
+            Debug.WriteLine("Collided {0}", new Random().Next());
         }
 
         // vertical collision resolution
